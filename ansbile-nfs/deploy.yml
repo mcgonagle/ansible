@@ -1,0 +1,6 @@
+# ./ansible-nfs/deploy.yml
+
+- hosts: nginx_hosts
+  sudo: true
+  tasks:
+    - include: 'tasks/install_nfs.yml'

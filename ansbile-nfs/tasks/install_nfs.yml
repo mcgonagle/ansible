@@ -1,0 +1,26 @@
+# ./ansible-nfs/tasks/install_nfs.yml
+
+
+- name: NFS | Installing rpcbind
+  yum:
+    name: rpcbind
+    state: latest
+
+- name: NFS | Installing nfs
+  yum:
+    name: nfs-utils
+    state: latest
+
+- name: NFS | Installing /etc/exports 
+  template: src=templates/exports.j2 dest=/etc/exports owner=root group=root mode=0644
+
+
+- name: NFS | Starting rpcbind 
+  service:
+    name: rpcbind
+    state: started
+
+- name: NFS | Starting NFS 
+  service:
+    name: nfs
+    state: started

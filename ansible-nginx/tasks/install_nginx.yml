@@ -1,0 +1,17 @@
+# ./ansible-nginx/tasks/install_nginx.yml
+ 
+- name: NGINX | Installing NGINX repo rpm
+  yum:
+    name: http://nginx.org/packages/rhel/7/x86_64/RPMS/nginx-1.8.1-1.el7.ngx.x86_64.rpm 
+ 
+- name: NGINX | Installing NGINX
+  yum:
+    name: nginx
+    state: latest
+
+- template: src=templates/default.j2 dest=/etc/nginx/conf.d/default.conf owner=root group=root mode=0644
+ 
+- name: NGINX | Starting NGINX
+  service:
+    name: nginx
+    state: started

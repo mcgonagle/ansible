@@ -1,0 +1,9 @@
+# ./ansible-nginx/deploy.yml
+
+- hosts: nginx_hosts
+  sudo: true
+  tasks:
+    - include: 'tasks/install_nginx.yml'
+  vars:
+    cje_server1: 1.1.1.1
+    cje_server2: 2.2.2.2
