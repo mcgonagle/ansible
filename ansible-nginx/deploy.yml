@@ -5,5 +5,5 @@
   tasks:
     - include: 'tasks/install_nginx.yml'
   vars:
-    cje_server1: 1.1.1.1
-    cje_server2: 2.2.2.2
+    cje_server1: 10.0.1.78 
+    cje_server2: 10.0.1.215
