@@ -1,6 +1,0 @@
-# ./ansible-cjoc/deploy.yml
-
-- hosts: cjoc_hosts
-  sudo: true
-  tasks:
-    - include: 'tasks/install_cjoc.yml'

@@ -1,0 +1,11 @@
+# ./ansible-cje/deploy.yml
+
+- hosts: tomcat_hosts
+  sudo: true
+  vars:
+    tomcat_url: http://mirror.nexcess.net/apache/tomcat/tomcat-8/v8.0.33/bin/apache-tomcat-8.0.33.tar.gz
+    tomcat_tarball: apache-tomcat-8.0.33.tar.gz
+    tomcat_untared: apache-tomcat-8.0.33
+    cje_url: http://nectar-downloads.cloudbees.com/cje/1.642/war/1.642.4.1/jenkins.war
+  tasks:
+    - include: 'tasks/install_cje.yml'

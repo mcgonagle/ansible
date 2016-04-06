@@ -1,0 +1,30 @@
+# ./ansible-tomcat/tasks/install_cje.yml
+
+- name: nfs-utils | Installing nfs-utils
+  yum:
+    name: nfs-utils
+    state: latest
+
+- name: tomcat | Downloading tomcat 8
+  get_url: url={{ tomcat_url }} dest=/home/ec2-user/ mode=0644 timeout=20
+
+- name: tomcat | Untaring tomcat
+  command: "sudo tar xvf {{ tomcat_tarball }}"
+  args:
+    chdir: /home/ec2-user
+    creates: "/home/ec2-user/{{ tomcat_untared }}" 
+
+- name: tomcat | removing tomcat webapps 
+  command: 'sudo /usr/bin/rm -rf *'
+  args:
+    chdir: /home/ec2-user/{{ tomcat_untared }}/webapps/
+
+- name: cjoc | Downloading cjoc
+  get_url: url={{ cjoc_url }} dest=/home/ec2-user/{{ tomcat_untared }}/webapps mode=0644
+
+- name: jenkins | move war  
+  command: 'sudo mv jenkins-oc.war ROOT.war'
+  args:
+    chdir: /home/ec2-user/{{ tomcat_untared }}/webapps/
+
+- template: src=templates/setup.sh dest=/home/ec2-user/setup.sh owner=ec2-user group=ec2-user mode=0755
