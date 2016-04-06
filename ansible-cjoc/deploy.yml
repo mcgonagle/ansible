@@ -1,0 +1,9 @@
+# ./ansible-cje/deploy.yml
+
+- hosts: cjoc_hosts
+  sudo: true
+  vars:
+    cjoc_repo: http://nectar-downloads.cloudbees.com/jenkins-operations-center/1.625/rpm/jenkins-oc.repo
+    cloudbees_key: http://nectar-downloads.cloudbees.com/jenkins-operations-center/1.625/rpm/cloudbees.com.key
+  tasks:
+    - include: 'tasks/install_cje.yml'

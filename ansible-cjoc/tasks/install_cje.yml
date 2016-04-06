@@ -1,0 +1,11 @@
+# ./ansible-tomcat/tasks/install_cje.yml
+
+- name: jenkins repo | Downloading jenkins repo
+  get_url: url={{ cjoc_repo }} dest=/etc/yum.repos.d/ mode=0644
+
+- name: jenkins key | Install RPM
+  rpm_key: state=present key={{ cloudbees_key }}
+
+- name: install jenkins | Install Jenkins
+  yum: name=jenkins-oc state=latest
+
