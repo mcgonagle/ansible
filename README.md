@@ -1,1 +1,3 @@
-# ansible_apple
+# ansible
+
+ansible-playbook deploy.yml
